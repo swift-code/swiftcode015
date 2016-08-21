@@ -2,6 +2,7 @@ package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import forms.LoginForm;
 import forms.SignupForm;
 import models.Profile;
 import models.User;
@@ -19,6 +20,8 @@ public class Application extends Controller {
 
     @Inject
     ObjectMapper objectMapper;
+
+    @Inject
     FormFactory formFactory;
 
     public Result signup(){
@@ -29,8 +32,8 @@ public class Application extends Controller {
             return ok(form.errorsAsJson());
         }
 
-        Profile profile = new Profile(form.data().get("firstname"),
-                form.data().get("lastname"));
+        Profile profile = new Profile(form.data().get("firstName"),
+                form.data().get("lastName"));
         Profile.db().save(profile);
 
         User user = new User(form.data().get("email"),
@@ -38,6 +41,16 @@ public class Application extends Controller {
         user.profile = profile;
         User.db().save(user);
         return ok((JsonNode) objectMapper.valueToTree(user));
+    }
+
+    public Result login(){
+
+        Form<LoginForm> form = formFactory.form(LoginForm.class).bindFromRequest();
+        if (form.hasErrors()){
+
+            return ok(form.errorsAsJson());
+        }
+        return ok();
     }
 
 

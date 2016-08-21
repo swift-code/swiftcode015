@@ -17,14 +17,16 @@ public class Profile extends Model {
     @GeneratedValue(strategy= GenerationType.AUTO)
     public Long id;
 
-    public String firstname;
+    public String firstName;
 
-    public String lastname;
+    public String lastName;
 
     public String company;
 
-    public Profile(String firstname, String lastname) {
-        this.firstname = firstname;
-        this.lastname = lastname;
+    public Profile(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
+
+    public static Finder<Long, Profile> find = new Finder <Long, Profile>(Profile.class);
 }

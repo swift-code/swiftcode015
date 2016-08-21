@@ -20,10 +20,10 @@ public class SignupForm {
     public String password;
 
     @Constraints.Required
-    public String firstname;
+    public String firstName;
 
     @Constraints.Required
-    public String lastname;
+    public String lastName;
 
     public List<ValidationError> validate() {
         List<ValidationError> errors = new ArrayList<>();
@@ -44,12 +44,12 @@ public class SignupForm {
         return password;
     }
 
-    public String getFirstname() {
-        return firstname;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getLastName() {
+        return lastName;
     }
 
     public void setEmail(String email) {
@@ -60,13 +60,11 @@ public class SignupForm {
         this.password = password;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
-
-
 }
